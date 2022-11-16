@@ -11,7 +11,7 @@ namespace Laba_4
         //начало 4!!
         static void Main(string[] args)
         {
-            N16();
+            N24();
 
             Console.ReadLine();
         }
@@ -123,31 +123,69 @@ namespace Laba_4
             int[,] mas = Rand(5, 5, 0, 11);
             int k = 0;
             Print(mas);
-            int max = mas[0, 0];
             int c = 0;
             for (int i = 0; i < mas.GetLength(0); i++)
             {
+                int max = mas[0, 0];
                 for (int j = 0; j < mas.GetLength(1); j++)
                 {
                     if (mas[i, j] > max)
                     {
                         max = mas[i, j];
                         k = j;
-                           
-                    }    
+
+                    }
                 }
-                c = mas[i, mas.GetLength(1)-1 ];
-                mas[i, mas.GetLength(1) -1] = max;
+                c = mas[i, mas.GetLength(1) - 1];
+                mas[i, mas.GetLength(1) - 1] = max;
                 mas[i, k] = c;
-            }          
-                
+            }
+
 
 
 
             Print(mas);
 
         }
+        public static void N20()
+        {
+            double[,] mas = RandDouble(5, 5, -10, 11);
+            PrintDouble(mas);
+            for (int i = 0; i < mas.GetLength(0); i++)
+            {
+                double polSum = 0;
+                bool t = false;
+                int k = 0;
+                double min2 = 0;
+                double min1 = 0;
+                double max = mas[i, 0];
+                for (int j = 0; j < mas.GetLength(1); j++)
+                {
+                    if (mas[i, j] > max)
+                    {
+                        max = mas[i, j];
+                        k = j;
+                    }
+                    if (mas[i, j] < 0 && !t)
+                    {
+                        min1 = mas[i, j];
+                        t = true;
+                    }
+                    if (mas[i, j] < 0)
+                    {
+                        min2 = mas[i, j];
+                    }
+                }
+                    polSum = (min1 + min2) / 2;
+                    mas[i,k]=polSum;
+            }
+            PrintDouble(mas);
+        }
 
+        public static void N24()
+        {
+
+        }
 
         static int[,] Rand(int n, int m, int min, int max)
         {
@@ -163,7 +201,33 @@ namespace Laba_4
             }
             return mas;
         }
+        static double[,] RandDouble(int n, int m, int min, int max)
+        {
+            Random random = new Random();
+
+            double[,] mas = new double[n, m];
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    mas[i, j] = random.Next(min, max);
+                }
+            }
+            return mas;
+        }
         static void Print(int[,] mas)
+        {
+            for (int i = 0; i < mas.GetLength(0); i++)
+            {
+                for (int j = 0; j < mas.GetLength(1); j++)
+                {
+                    Console.Write($"{mas[i, j]} ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+        static void PrintDouble(double[,] mas)
         {
             for (int i = 0; i < mas.GetLength(0); i++)
             {
