@@ -11,7 +11,7 @@ namespace Laba_4
         //начало 4!!
         static void Main(string[] args)
         {
-            N24();
+            N32();
 
             Console.ReadLine();
         }
@@ -231,9 +231,65 @@ namespace Laba_4
                         }
                     }
                 }
+            }
+            PrintDouble(mas);
+        }
 
+        public static void N28()
+        {
+            int max = 0;
+            int n = 0;
+            int k = 0;
+            int n1 = 0;
+            int[,] mas = Rand(5, 7, -10, 11);
+            Print(mas);
+            for (int i = 0; i < mas.GetLength(0); i++)
+            {
+                int sum = 0;
+                for (int j = 0; j < mas.GetLength(1); j++)
+                {
+                    sum += mas[i, j];
 
-                //  Console.WriteLine();
+                    n1 = i;
+                }
+                if (sum > max)
+                {
+                    max = sum;
+                    n = n1;
+                }
+                
+            }
+                DeleteRow(ref mas, n);
+                Print(mas);
+        }
+
+        public static void N32()
+        {
+            double[,] mas = RandDouble(7, 5, -10, 11);
+            PrintDouble(mas);
+
+            for (int i = 0; i < mas.GetLength(0); i++)
+            {
+                double sred = 0;
+                double max = -10000;
+                double sum = 0;
+                int k = 0;
+                int c = 0;
+                for (int j = 0; j < mas.GetLength(1); j++)
+                {
+                    if (mas[i, j] > max)
+                    {
+                        max = mas[i, j];
+                        k = j;
+                    }
+                    if (mas[i, j] >= 0)
+                    {
+                        sum += mas[i, j];
+                        c++;
+                    }
+                    sred = sum / c;
+                }
+                mas[i, k] = sred;
             }
             PrintDouble(mas);
         }
