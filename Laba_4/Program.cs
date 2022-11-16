@@ -29,7 +29,7 @@ namespace Laba_4
                 for (int j = 0; j < 3; j++)
                 {
 
-                    Console.Write($"{ mas[i, j]} ");
+                    Console.Write($"{mas[i, j]} ");
 
                 }
                 Console.WriteLine();
@@ -112,7 +112,7 @@ namespace Laba_4
                     }
                 }
             }
-            
+
             DeleteColumn(ref mas, m);
             DeleteRow(ref mas, n);
             Print(mas);
@@ -120,11 +120,36 @@ namespace Laba_4
         }
         public static void N16()
         {
-            int[,] mas = Rand(5,5,0,11);
+            int[,] mas = Rand(5, 5, 0, 11);
+            int k = 0;
+            Print(mas);
+            int max = mas[0, 0];
+            int c = 0;
+            for (int i = 0; i < mas.GetLength(0); i++)
+            {
+                for (int j = 0; j < mas.GetLength(1); j++)
+                {
+                    if (mas[i, j] > max)
+                    {
+                        max = mas[i, j];
+                        k = j;
+                           
+                    }    
+                }
+                c = mas[i, mas.GetLength(1)-1 ];
+                mas[i, mas.GetLength(1) -1] = max;
+                mas[i, k] = c;
+            }          
+                
+
+
 
             Print(mas);
+
         }
-        static int[,] Rand(int n, int m, int min,int max)
+
+
+        static int[,] Rand(int n, int m, int min, int max)
         {
             Random random = new Random();
 
@@ -133,7 +158,7 @@ namespace Laba_4
             {
                 for (int j = 0; j < m; j++)
                 {
-                    mas[i, j] = random.Next(min,max);
+                    mas[i, j] = random.Next(min, max);
                 }
             }
             return mas;
@@ -153,7 +178,7 @@ namespace Laba_4
         static void DeleteColumn(ref int[,] mas, int column)
         {
 
-            int[,] mass = new int[mas.GetLength(0), mas.GetLength(1)-1];
+            int[,] mass = new int[mas.GetLength(0), mas.GetLength(1) - 1];
 
 
             for (int i = 0; i < mas.GetLength(0); i++)
@@ -161,7 +186,7 @@ namespace Laba_4
                 int k = 0;
                 for (int j = 0; j < mas.GetLength(1); j++)
                 {
-                    if (j==column)
+                    if (j == column)
                     {
                         continue;
                     }
@@ -171,7 +196,7 @@ namespace Laba_4
                 }
             }
 
-            mas= mass;
+            mas = mass;
         }
         static void DeleteRow(ref int[,] mas, int row)
         {
@@ -197,4 +222,4 @@ namespace Laba_4
         }
     }
 }
-    
+
