@@ -176,23 +176,24 @@ namespace Laba_4
                         min2 = mas[i, j];
                     }
                 }
-                    polSum = (min1 + min2) / 2;
-                    mas[i,k]=polSum;
+                polSum = (min1 + min2) / 2;
+                mas[i, k] = polSum;
             }
             PrintDouble(mas);
         }
 
         public static void N24()
         {
-            double[,] mas = RandDouble(5,6,-10,11);
+            double[,] mas = RandDouble(5, 6, -10, 11);
             PrintDouble(mas);
 
             for (int i = 0; i < mas.GetLength(0); i++)
             {
-                double max =mas[i, 0];
+                double max = mas[i, 0];
                 double sred = 0;
                 int cMax = 0;
                 int k = 0;
+                double sum = 0;
                 for (int j = 0; j < mas.GetLength(1); j++)
                 {
                     if (mas[i, j] > max)
@@ -200,9 +201,41 @@ namespace Laba_4
                         max = mas[i, j];
                         k = j;
                     }
-                    
+
                 }
+                for (int f = k + 1; f < mas.GetLength(1); f++)
+                {
+                    if (mas[i, f] >= 0)
+                    {
+
+                        cMax++;
+                        sum += mas[i, f];
+                    }
+                    sred = sum / cMax;
+
+
+                }
+                for (int t = 0; t < k; t++)
+                {
+
+                    if (mas[i, t] < 0)
+                    {
+                        if (cMax == 0)
+                        {
+                            mas[i, t] = 0;
+                        }
+                        else
+                        {
+
+                            mas[i, t] = sred;
+                        }
+                    }
+                }
+
+
+                //  Console.WriteLine();
             }
+            PrintDouble(mas);
         }
 
         static int[,] Rand(int n, int m, int min, int max)
