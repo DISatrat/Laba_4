@@ -184,7 +184,25 @@ namespace Laba_4
 
         public static void N24()
         {
+            double[,] mas = RandDouble(5,6,-10,11);
+            PrintDouble(mas);
 
+            for (int i = 0; i < mas.GetLength(0); i++)
+            {
+                double max =mas[i, 0];
+                double sred = 0;
+                int cMax = 0;
+                int k = 0;
+                for (int j = 0; j < mas.GetLength(1); j++)
+                {
+                    if (mas[i, j] > max)
+                    {
+                        max = mas[i, j];
+                        k = j;
+                    }
+                    
+                }
+            }
         }
 
         static int[,] Rand(int n, int m, int min, int max)
