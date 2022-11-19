@@ -13,6 +13,7 @@ namespace Laba_4
             N10();
             Console.ReadLine();
         }
+
         public static void N10()
         {
             int[,] mas = Rand(4, 4, -10, 11);
@@ -26,7 +27,7 @@ namespace Laba_4
                 {
                     if (i % 2 == 0)
                     {
-                        for (int t = j+1; t < mas.GetLength(1); t++)
+                        for (int t = j + 1; t < mas.GetLength(1); t++)
                         {
                             if (mas[i, j] > mas[i, t])
                             {
@@ -38,11 +39,11 @@ namespace Laba_4
                     }
                     else
                     {
-                        for (int t = j+1; t < mas.GetLength(1); t++)
+                        for (int t = j + 1; t < mas.GetLength(1); t++)
                         {
                             if (mas[i, j] < mas[i, t])
                             {
-                                int k = mas[i,j];
+                                int k = mas[i, j];
                                 mas[i, j] = mas[i, t];
                                 mas[i, t] = k;
                             }
@@ -55,9 +56,59 @@ namespace Laba_4
         }
         public static void N9()
         {
-            int[,] mas = Rand(5, 5, -10, 11);
+            int[,] mas = Rand(5, 7, -10, 11);
+            Print(mas);
+
+            int amount1 = 0;
+            int amount2 = 0;
+            int index1 = 0;
+            int index2 = 0;
+            int k = 0;
+
+            for (int l = 0; l < mas.GetLength(1); l++)
+            {
+                for (int j = 0; j < mas.GetLength(1); j++)
+                {
+                    amount2 = 0;
+                    if (j == 0)
+                    {
+                        amount1 = 0;
+                        for (int i = 0; i < mas.GetLength(0); i++)
+                        {
+                            if (mas[i, j] < 0)
+                            {
+                                amount1++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < mas.GetLength(0); i++)
+                        {
+                            if (mas[i, j] < 0)
+                            {
+                                amount2++;
+                            }
+                        }
+                        if (amount1 > amount2)
+                        {
+                            for (int i = 0; i < mas.GetLength(0); i++)
+                            {
+                                k = mas[i, j];
+                                mas[i, j] = mas[i, j - 1];
+                                mas[i, j - 1] = k;
+                            }
+                        }
+                        else
+                        {
+                            amount1 = amount2;
+                        }
+                    }
+                }
+            }
             Print(mas);
         }
+        
         static int[,] Rand(int n, int m, int min, int max)
         {
             Random random = new Random();
